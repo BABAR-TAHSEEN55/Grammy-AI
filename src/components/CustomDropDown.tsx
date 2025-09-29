@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Command,
-  CommandEmpty,
   CommandGroup,
   CommandItem,
   CommandList,
@@ -26,10 +25,6 @@ const frameworks = [
     label: "Professional",
   },
   {
-    value: "casual",
-    label: "Casual",
-  },
-  {
     value: "persuasive",
     label: "Persuasive",
   },
@@ -42,9 +37,13 @@ const frameworks = [
     label: "Humorous",
   },
 ];
-const CustomDropDown = () => {
+interface CustomProps {
+  tone: string;
+  setTone: (tone: string) => void;
+}
+const CustomDropDown = ({ tone, setTone }: CustomProps) => {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+
   return (
     <div>
       <Popover open={open} onOpenChange={setOpen}>
@@ -55,22 +54,23 @@ const CustomDropDown = () => {
             aria-expanded={open}
             className="justify-between "
           >
-            {value
-              ? frameworks.find((framework) => framework.value === value)?.label
+            {tone
+              ? frameworks.find((framework) => framework.value === tone)?.label
               : "Tone"}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0">
           <Command>
             <CommandList>
-              <CommandEmpty>No framework found.</CommandEmpty>
               <CommandGroup>
                 {frameworks.map((framework) => (
                   <CommandItem
+                    // className="dark:bg-black not-dark:bg-white"
+                    className="bg-black"
                     key={framework.value}
                     value={framework.value}
                     onSelect={(currentValue) => {
-                      setValue(currentValue === value ? "" : currentValue);
+                      setTone(currentValue === tone ? "" : currentValue);
                       setOpen(false);
                     }}
                   >
@@ -78,7 +78,7 @@ const CustomDropDown = () => {
                     <Check
                       className={cn(
                         "ml-auto",
-                        value === framework.value ? "opacity-100" : "opacity-0",
+                        tone === framework.value ? "opacity-100 " : "opacity-0",
                       )}
                     />
                   </CommandItem>
