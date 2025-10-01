@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { GetPrompt } from "@/lib/prompt";
 import { perplexity } from "@ai-sdk/perplexity";
 import { streamText, UIMessage, convertToModelMessages } from "ai";
-import { nextImageLoaderRegex } from "next/dist/build/webpack-config";
+
 import { NextResponse } from "next/server";
 
 // Allow streaming responses up to 30 seconds
@@ -48,11 +48,7 @@ export async function POST(req: Request) {
   const GetStyle = metadata.style;
   console.log(GetTone);
   console.log(GetStyle);
-
-  // const GetTone = LastUserMsg?.metadata || "casual";
-  // console.log(GetTone);
   const Prompt = GetPrompt(GetStyle, GetTone);
-  console.log(Prompt);
   const UserMessage = (messages[messages.length - 1].parts[0] as MessagePart)
     .text;
 
@@ -69,14 +65,15 @@ export async function POST(req: Request) {
     parts: [
       {
         type: "text",
-        text: `You are an expert message refiner.
-        Only reply with a refined version of the user's message, making it clearer, more concise, and use a ${GetTone} tone.
-        Format your response specifically for the ${GetStyle} platform.
-        If the user's message is not a request for refinement, respond with: "Sorry, I only refine messages."
+        // text: `You are an expert message refiner.
+        // Only reply with a refined version of the user's message, making it clearer, more concise, and use a ${GetTone} tone.
+        // Format your response specifically for the ${GetStyle} platform.
+        // If the user's message is not a request for refinement, respond with: "Sorry, I only refine messages."
 
-        Do not provide explanations, formatting, or additional comments.
-        Don't use Markdown , asterisks
-        Your response must always be a single line.`,
+        // Do not provide explanations, formatting, or additional comments.
+        // Don't use Markdown , asterisks
+        // Your response must always be a single line.`,
+        text: Prompt,
       },
     ],
   };
