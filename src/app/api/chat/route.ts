@@ -26,6 +26,7 @@ function normalizeMessages(messages: UIMessage[]) {
 type MessageMetadata = {
   tone: string;
   style: string;
+  context: string;
 };
 type MessagePart = {
   type: string;
@@ -36,6 +37,7 @@ type SessionReturn = {
 };
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
+
   // Get the User Session
   const session = await auth();
   const userId = (session?.user as SessionReturn).id;
@@ -46,6 +48,8 @@ export async function POST(req: Request) {
   console.log(metadata);
   const GetTone = metadata.tone || "casual";
   const GetStyle = metadata.style;
+  const getContext = metadata.context;
+  console.log(getContext);
   console.log(GetTone);
   console.log(GetStyle);
   const Prompt = GetPrompt(GetStyle, GetTone);
@@ -65,14 +69,6 @@ export async function POST(req: Request) {
     parts: [
       {
         type: "text",
-        // text: `You are an expert message refiner.
-        // Only reply with a refined version of the user's message, making it clearer, more concise, and use a ${GetTone} tone.
-        // Format your response specifically for the ${GetStyle} platform.
-        // If the user's message is not a request for refinement, respond with: "Sorry, I only refine messages."
-
-        // Do not provide explanations, formatting, or additional comments.
-        // Don't use Markdown , asterisks
-        // Your response must always be a single line.`,
         text: Prompt,
       },
     ],
