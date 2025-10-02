@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { GetPrompt } from "@/lib/prompt";
+import { MessageMetadata, MessagePart, SessionReturn } from "@/types";
 import { perplexity } from "@ai-sdk/perplexity";
 import { streamText, UIMessage, convertToModelMessages } from "ai";
 
@@ -23,18 +24,18 @@ function normalizeMessages(messages: UIMessage[]) {
   return normalized;
 }
 
-type MessageMetadata = {
-  tone: string;
-  style: string;
-  context: string;
-};
-type MessagePart = {
-  type: string;
-  text: string;
-};
-type SessionReturn = {
-  id: string;
-};
+// type MessageMetadata = {
+//   tone: string;
+//   style: string;
+//   context: string;
+// };
+// type MessagePart = {
+//   type: string;
+//   text: string;
+// };
+// type SessionReturn = {
+//   id: string;
+// };
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
 
@@ -52,7 +53,7 @@ export async function POST(req: Request) {
   console.log(getContext);
   console.log(GetTone);
   console.log(GetStyle);
-  const Prompt = GetPrompt(GetStyle, GetTone);
+  const Prompt = GetPrompt(GetStyle, GetTone, getContext);
   const UserMessage = (messages[messages.length - 1].parts[0] as MessagePart)
     .text;
 

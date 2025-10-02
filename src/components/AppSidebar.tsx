@@ -2,7 +2,6 @@ import React from "react";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -12,11 +11,11 @@ import {
   SidebarMenuItem,
   SidebarTrigger,
 } from "./ui/sidebar";
-import { ChartArea, ChevronUp, Search, User, User2 } from "lucide-react";
-import { Button } from "./ui/button";
+import { Search } from "lucide-react";
+
+import ChatHistorySIdebar from "./ChatHistorySidebar";
+
 import Link from "next/link";
-import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
-import { DropdownMenuTrigger } from "./ui/dropdown-menu";
 
 interface ItemProps {
   title: string;
@@ -24,11 +23,11 @@ interface ItemProps {
   Icon: React.ComponentType;
 }
 const Items: ItemProps[] = [
-  {
-    title: "New Chat",
-    url: "/",
-    Icon: ChartArea,
-  },
+  // {
+  //   title: "New Chat",
+  //   url: "/",
+  //   Icon: ChartArea,
+  // },
 
   {
     title: "Search Chat",
@@ -43,7 +42,7 @@ const AppSidebar = () => {
         {/*//Change this*/}
 
         {/*<User2 className="mr-auto size-" />*/}
-        <SidebarTrigger className="ml-auto" />
+        {/*<SidebarTrigger className="ml-auto" />*/}
       </SidebarHeader>
       <SidebarContent>
         {/*Utils*/}
@@ -58,6 +57,7 @@ const AppSidebar = () => {
                       <item.Icon />
                       <span className="">{item.title}</span>
                     </Link>
+                    {/*<CommanderSideBar />*/}
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -67,9 +67,23 @@ const AppSidebar = () => {
 
         <SidebarGroup>
           <SidebarGroupLabel>Chats History</SidebarGroupLabel>
+
+          <SidebarGroupContent>
+            {/*{Items.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <Link href={item.url}>
+                      <item.Icon />
+                      <span className="">{item.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}*/}
+            <ChatHistorySIdebar />
+          </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>
+      {/*<SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
@@ -81,7 +95,7 @@ const AppSidebar = () => {
             </DropdownMenu>
           </SidebarMenuItem>
         </SidebarMenu>
-      </SidebarFooter>
+      </SidebarFooter>*/}
     </Sidebar>
   );
 };

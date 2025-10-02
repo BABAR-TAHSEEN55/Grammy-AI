@@ -17,31 +17,28 @@ import {
 
 const frameworks = [
   {
-    value: "friendly",
-    label: "Friendly",
+    value: "X/twitter",
+    label: "X / Twitter",
+  },
+
+  {
+    value: "X/twitter (UnRestraint)",
+    label: "X/twitter (UnRestraint)",
   },
   {
-    value: "professional",
-    label: "Professional",
+    value: "Grammer Check",
+    label: "Grammer Check",
   },
   {
-    value: "persuasive",
-    label: "Persuasive",
-  },
-  {
-    value: "empathetic",
-    label: "Empathetic",
-  },
-  {
-    value: "humorous",
-    label: "Humorous",
+    value: "LinkedIn",
+    label: "LinkedIn",
   },
 ];
 interface CustomProps {
-  tone: string;
-  setTone: (tone: string) => void;
+  style?: string;
+  setStyle: (style: string) => void;
 }
-const CustomDropDown = ({ tone, setTone }: CustomProps) => {
+const SocialStyle = ({ style, setStyle }: CustomProps) => {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -54,9 +51,9 @@ const CustomDropDown = ({ tone, setTone }: CustomProps) => {
             aria-expanded={open}
             className="justify-between "
           >
-            {tone
-              ? frameworks.find((framework) => framework.value === tone)?.label
-              : "Tone"}
+            {style
+              ? frameworks.find((framework) => framework.value === style)?.label
+              : "Style"}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0">
@@ -65,11 +62,12 @@ const CustomDropDown = ({ tone, setTone }: CustomProps) => {
               <CommandGroup>
                 {frameworks.map((framework) => (
                   <CommandItem
-                    className="in-dark:bg-black"
+                    // className="dark:bg-black not-dark:bg-white"
+                    className="in-dark:bg-black "
                     key={framework.value}
                     value={framework.value}
                     onSelect={(currentValue) => {
-                      setTone(currentValue === tone ? "" : currentValue);
+                      setStyle(currentValue === style ? "" : currentValue);
                       setOpen(false);
                     }}
                   >
@@ -77,7 +75,9 @@ const CustomDropDown = ({ tone, setTone }: CustomProps) => {
                     <Check
                       className={cn(
                         "ml-auto",
-                        tone === framework.value ? "opacity-100 " : "opacity-0",
+                        style === framework.value
+                          ? "opacity-100 "
+                          : "opacity-0",
                       )}
                     />
                   </CommandItem>
@@ -91,4 +91,4 @@ const CustomDropDown = ({ tone, setTone }: CustomProps) => {
   );
 };
 
-export default CustomDropDown;
+export default SocialStyle;

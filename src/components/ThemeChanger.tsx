@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
 
 const ThemeChanger = ({ children }: { children: React.ReactNode }) => {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   if (!mounted) {
@@ -15,7 +15,7 @@ const ThemeChanger = ({ children }: { children: React.ReactNode }) => {
     <div className="h-screen w-full relative ">
       {theme == "dark" ? (
         <div
-          className="absolute inset-0 z-0"
+          className=" absolute inset-0 z-0"
           style={{
             background:
               "radial-gradient(125% 125% at 50% 100%, #000000 40%, #010133 100%)",
