@@ -14,6 +14,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { CustomProps2 } from "@/types";
 
 const frameworks = [
   {
@@ -34,11 +35,7 @@ const frameworks = [
     label: "LinkedIn",
   },
 ];
-interface CustomProps {
-  style?: string;
-  setStyle: (style: string) => void;
-}
-const SocialStyle = ({ style, setStyle }: CustomProps) => {
+const SocialStyle = ({ style, setStyle }: CustomProps2) => {
   const [open, setOpen] = React.useState(false);
 
   return (

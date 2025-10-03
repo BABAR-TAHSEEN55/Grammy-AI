@@ -9,19 +9,14 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarTrigger,
 } from "./ui/sidebar";
 import { Search } from "lucide-react";
 
 import ChatHistorySIdebar from "./ChatHistorySidebar";
 
 import Link from "next/link";
+import { ItemProps } from "@/types";
 
-interface ItemProps {
-  title: string;
-  url: string;
-  Icon: React.ComponentType;
-}
 const Items: ItemProps[] = [
   // {
   //   title: "New Chat",

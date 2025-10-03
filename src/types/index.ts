@@ -10,3 +10,19 @@ export type MessagePart = {
 export type SessionReturn = {
   id: string;
 };
+
+export interface ItemProps {
+  title: string;
+  url: string;
+  Icon: React.ComponentType;
+}
+
+export interface CustomProps {
+  tone: string;
+  setTone: (tone: string) => void;
+}
+
+export interface CustomProps2 {
+  style?: string;
+  setStyle: (style: string) => void;
+}

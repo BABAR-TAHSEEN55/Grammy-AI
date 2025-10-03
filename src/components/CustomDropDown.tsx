@@ -14,6 +14,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { CustomProps } from "@/types";
 
 const frameworks = [
   {
@@ -37,10 +38,6 @@ const frameworks = [
     label: "Humorous",
   },
 ];
-interface CustomProps {
-  tone: string;
-  setTone: (tone: string) => void;
-}
 const CustomDropDown = ({ tone, setTone }: CustomProps) => {
   const [open, setOpen] = React.useState(false);
 

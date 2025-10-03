@@ -24,18 +24,6 @@ function normalizeMessages(messages: UIMessage[]) {
   return normalized;
 }
 
-// type MessageMetadata = {
-//   tone: string;
-//   style: string;
-//   context: string;
-// };
-// type MessagePart = {
-//   type: string;
-//   text: string;
-// };
-// type SessionReturn = {
-//   id: string;
-// };
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
 
