@@ -105,3 +105,11 @@ export const GET = async () => {
   });
   return NextResponse.json({ chats });
 };
+
+//TODO :
+
+// 2) Write a message AI Might sometimes Fumble try again to get the response Hallucination is real
+// 4) LOGO Change
+// 5) Message looks kinda shi~
+// 6) Custom & Social Size Decrese
+// 7) System default theme looks kinda ahhhhhhh

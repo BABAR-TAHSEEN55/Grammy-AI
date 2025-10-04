@@ -22,9 +22,9 @@ const Navbar = () => {
 
   return (
     <nav className="flex justify-between items-center p-4 z-50">
-      <div className="flex gap-2">
+      <div className="flex gap-2 justify-center items-center ">
         <SidebarTrigger />
-        <p>Grammy AI</p>
+        <p className="font-mono">Grammy Ai</p>
       </div>
       <div className="flex items-center justify-center  gap-4">
         <DropdownMenu>

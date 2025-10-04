@@ -37,6 +37,7 @@ const MainContent = () => {
       }
     },
   });
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -115,7 +116,7 @@ const MainContent = () => {
           onBlur={() => setIsFocused(false)}
         />
         <div className="flex items-center justify-between mt-4">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1">
             <CustomDropDown tone={tone} setTone={setTone} />
             <SocialStyle setStyle={setStyle} style={style} />
           </div>

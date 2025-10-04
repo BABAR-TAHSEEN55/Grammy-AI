@@ -2,6 +2,7 @@ import React from "react";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -10,12 +11,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "./ui/sidebar";
-import { Search } from "lucide-react";
+import { ChevronUp, History, Search, User } from "lucide-react";
 
 import ChatHistorySIdebar from "./ChatHistorySidebar";
 
 import Link from "next/link";
 import { ItemProps } from "@/types";
+import { DropdownMenu, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import CreditsSection from "./CreditsSection";
 
 const Items: ItemProps[] = [
   // {
@@ -25,9 +28,9 @@ const Items: ItemProps[] = [
   // },
 
   {
-    title: "Search Chat",
+    title: "Chat History",
     url: "/",
-    Icon: Search,
+    Icon: History,
   },
 ];
 const AppSidebar = () => {
@@ -52,28 +55,11 @@ const AppSidebar = () => {
                       <item.Icon />
                       <span className="">{item.title}</span>
                     </Link>
-                    {/*<CommanderSideBar />*/}
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        <SidebarGroup>
-          <SidebarGroupLabel>Chats History</SidebarGroupLabel>
-
-          <SidebarGroupContent>
-            {/*{Items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.Icon />
-                      <span className="">{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}*/}
+            {/*ChatHistory */}
             <ChatHistorySIdebar />
           </SidebarGroupContent>
         </SidebarGroup>
@@ -84,7 +70,7 @@ const AppSidebar = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  <User /> User <ChevronUp className="ml-auto" />
+                  <CreditsSection />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
             </DropdownMenu>

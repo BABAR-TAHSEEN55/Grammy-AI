@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Loader from "@/components/Loader";
 
 import MainContent from "@/components/MainContent";
+
 import { useEffect, useState } from "react";
 
 const Home = () => {
@@ -23,7 +24,4 @@ const Home = () => {
 
 export default Home;
 // TODO :
-// 2. Add Context with backend support
 // 3. Interactions
-// 4. Credits System 2 Credit
-// 4.DEPLOY ( Deadline : 3)

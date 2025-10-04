@@ -57,12 +57,12 @@ const CustomDropDown = ({ tone, setTone }: CustomProps) => {
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0">
-          <Command>
+          <Command className="in-dark:bg-black">
             <CommandList>
               <CommandGroup>
                 {frameworks.map((framework) => (
                   <CommandItem
-                    className="in-dark:bg-black"
+                    className="in-dark:bg-black text-xs md:text-base"
                     key={framework.value}
                     value={framework.value}
                     onSelect={(currentValue) => {
