@@ -3,7 +3,7 @@
 import * as z from "zod";
 import { useChat } from "@ai-sdk/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCheck, ChevronRight, Copy, Loader2 } from "lucide-react";
@@ -14,25 +14,32 @@ import SocialStyle from "./SocialStyle";
 import { useContextContext } from "./UserContextProvider";
 import { FormSchema } from "../../schema";
 
-// const FormSchema = z.object({
-//   message: z.string().min(1, {
-//     message: "This cannot be empty",
-//   }),
-// });
+import { Alert, AlertDescription } from "./ui/alert";
 
 const MainContent = () => {
   const [copy, setCopied] = useState<"Copy" | "Copied">("Copy");
   const [tone, setTone] = useState<string>("");
   const [style, setStyle] = useState<string>("");
   const [loading, setLoading] = useState(false);
+  const [Error, setError] = useState<string>("");
   const { context } = useContextContext();
+  const [isFocused, setIsFocused] = useState(false);
 
+  // const { messages, sendMessage, error } = useChat();
+  const { messages, sendMessage } = useChat({
+    onError: (error) => {
+      setLoading(false);
+
+      if (error.message.includes("No credits")) {
+        setError("No credits remaining. Please sign in for unlimited access.");
+      } else {
+        setError("An error occurred. Please try again.");
+      }
+    },
+  });
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
-
-  const [isFocused, setIsFocused] = useState(false);
-  const { messages, sendMessage } = useChat();
 
   const HandleButton = async (text: string) => {
     await navigator.clipboard.writeText(text);
@@ -40,14 +47,24 @@ const MainContent = () => {
     setTimeout(() => setCopied("Copy"), 3000);
   };
 
+  // Debug
+  // useEffect(() => {
+  //   console.log("TOne Changed to :", tone);
+  // }, [tone]);
   const HandleSubmit = async (data: z.infer<typeof FormSchema>) => {
+    setError("");
     setLoading(true);
-    await sendMessage({
-      text: data.message,
-      metadata: { tone, style, context },
-    });
-    setLoading(false);
-    // form.reset();
+    try {
+      await sendMessage({
+        text: data.message,
+        metadata: { tone, style, context },
+      });
+    } catch (err) {
+      console.log("Error occured while getting ...", err);
+    } finally {
+      setLoading(false);
+      // form.reset();
+    }
   };
 
   const latestMessage = [...messages]
@@ -62,6 +79,21 @@ const MainContent = () => {
 
   return (
     <div className="mx-auto stretch">
+      {Error && (
+        <Alert variant="destructive" className="mb-4 max-w-[900px] mx-auto">
+          <AlertDescription className="flex items-center justify-between">
+            <span>{Error}</span>
+          </AlertDescription>
+        </Alert>
+      )}
+
+      {/* Credits Display */}
+      {/*{!session?.user && (
+            <div className="mb-4 max-w-[900px] mx-auto text-sm text-muted-foreground">
+              <span>Free trial: 1 message</span>
+              <span className="ml-2">•</span>
+              <span className="ml-2">Sign in for unlimited access</span>
+            </div>*/}
       <form
         onSubmit={form.handleSubmit(HandleSubmit)}
         className={`space-y-6 border dark:border-white/20 border-black/10 bg-white/10 dark:bg-black/20 backdrop-blur-xl p-4 rounded-xl lg:w-[900px] md:w-[480px] min-w-[340px] w-full shadow-xl transition-all duration-200

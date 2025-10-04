@@ -7,6 +7,9 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import ThemeChanger from "@/components/ThemeChanger";
 import { SessionProvider } from "next-auth/react";
+import LayoutMain from "@/components/LayoutMain";
+import QueryProvider from "@/components/QueryProvider";
+import { ContextProvider } from "@/components/UserContextProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +35,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex h-screen `}
+        // style={{ backgroundColor: "black" }}
       >
         <ThemeProvider
           attribute="class"
@@ -40,15 +44,21 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SidebarProvider>
-            <AppSidebar />
-            <ThemeChanger>
+            {/*Tanstack*/}
+            <QueryProvider>
+              {/*Auth*/}
               <SessionProvider>
-                <main className="w-full ">
-                  <Navbar />
-                  <div className="px-4 ">{children}</div>
-                </main>
+                <ContextProvider>
+                  <AppSidebar />
+                  <ThemeChanger>
+                    <LayoutMain>
+                      <Navbar />
+                      <div className="px-4">{children}</div>
+                    </LayoutMain>
+                  </ThemeChanger>
+                </ContextProvider>
               </SessionProvider>
-            </ThemeChanger>
+            </QueryProvider>
           </SidebarProvider>
         </ThemeProvider>
       </body>

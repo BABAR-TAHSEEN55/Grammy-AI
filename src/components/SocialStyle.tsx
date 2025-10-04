@@ -23,8 +23,8 @@ const frameworks = [
   },
 
   {
-    value: "X/twitter (UnRestraint)",
-    label: "X/twitter (UnRestraint)",
+    value: "X (UnRestraint)",
+    label: "X (UnRestraint)",
   },
   {
     value: "Grammer Check",
