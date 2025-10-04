@@ -4,6 +4,7 @@ import { GetPrompt } from "@/lib/prompt";
 import { MessageMetadata, MessagePart, SessionReturn } from "@/types";
 import { perplexity } from "@ai-sdk/perplexity";
 import { streamText, UIMessage, convertToModelMessages } from "ai";
+import { cookies } from "next/headers";
 
 import { NextResponse } from "next/server";
 
@@ -26,17 +27,36 @@ function normalizeMessages(messages: UIMessage[]) {
 
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
+  const CookieStore = await cookies();
 
   // Get the User Session
   const session = await auth();
-  const userId = (session?.user as SessionReturn).id;
 
-  const LastUserMsg = messages.find((msg) => msg.role === "user");
+  if (!session?.user?.id) {
+    const AnonCredits = CookieStore.get("AnonCredits")?.value;
+    if (AnonCredits === "0") {
+      return NextResponse.json(
+        {
+          error: "No credits remaining. Please sign in for unlimited access.",
+          creditsRemaining: 0,
+        },
+        { status: 403 },
+      );
+    }
+    CookieStore.set("AnonCredits", "0", {
+      path: "/",
+      httpOnly: true,
+      secure: true,
+    });
+  }
+
+  const userId = session?.user?.id ? (session.user as SessionReturn).id : null;
+  const LastUserMsg = messages.reverse().find((msg) => msg.role === "user");
 
   const metadata = LastUserMsg!.metadata as MessageMetadata;
   console.log(metadata);
   const GetTone = metadata.tone || "casual";
-  const GetStyle = metadata.style;
+  const GetStyle = metadata.style || "normal";
   const getContext = metadata.context;
   console.log(getContext);
   console.log(GetTone);
@@ -45,12 +65,14 @@ export async function POST(req: Request) {
   const UserMessage = (messages[messages.length - 1].parts[0] as MessagePart)
     .text;
 
-  await db.chatHistory.create({
-    data: {
-      Chats: UserMessage,
-      userId,
-    },
-  });
+  if (userId) {
+    await db.chatHistory.create({
+      data: {
+        Chats: UserMessage,
+        userId,
+      },
+    });
+  }
 
   const SystemPrompt: UIMessage = {
     id: "1",

@@ -36,7 +36,7 @@ If the user's message is not a request for refinement, respond with exactly: "So
 ${formattedContext}
       `.trim();
 
-    case "X/twitter (UnRestraint)":
+    case "X (UnRestraint)":
       return `
 You are a Twitter/X post optimizer with a strict character limit.
 
