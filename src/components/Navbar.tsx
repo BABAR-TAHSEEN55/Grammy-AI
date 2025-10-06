@@ -9,6 +9,7 @@ import UserProfile from "./UserProfile";
 import { Moon, Sun } from "lucide-react";
 
 import Context from "./Context";
+import CreditsSection from "./CreditsSection";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
@@ -39,6 +40,7 @@ const Navbar = () => {
         <Context />
 
         <UserProfile />
+        {/*<CreditsSection />*/}
       </div>
     </nav>
   );

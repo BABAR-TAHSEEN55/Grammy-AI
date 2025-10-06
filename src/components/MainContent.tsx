@@ -133,26 +133,35 @@ const MainContent = () => {
 
       {latestMessage && (
         <div>
-          <div className="py-2">
-            <Button
-              className="flex ml-auto"
-              variant={"custom"}
-              onClick={() => {
-                HandleButton(ExtractedText);
-                setCopied("Copied");
-              }}
-            >
-              {copy === "Copy" ? <Copy size={20} /> : <CheckCheck size={20} />}
-            </Button>
-          </div>
           <div className="whitespace-pre-wrap max-w-[900px] mx-auto flex flex-col">
             <div className="mr-auto p-2 mb-2 w-full rounded-xl">
-              <ScrollArea className="max-h-[200px] w-full rounded-md border p-4 overflow-y-auto">
-                {latestMessage.parts
-                  .filter((part) => part.type === "text")
-                  .map((part, i) => (
-                    <div key={i}>{part.text}</div>
-                  ))}
+              {/*Copy Button*/}
+              <div className="py-2" />
+              <ScrollArea className="max-h-[200px] w-full rounded-md border border-black/20 dark:border-white/20 p-4 overflow-y-auto">
+                <div className="flex justify-end mb-2">
+                  <Button
+                    className="h-8 w-8 p-0 border-neutral-700"
+                    variant={"custom"}
+                    size="sm"
+                    onClick={() => {
+                      HandleButton(ExtractedText);
+                      setCopied("Copied");
+                    }}
+                  >
+                    {copy === "Copy" ? (
+                      <Copy size={14} />
+                    ) : (
+                      <CheckCheck size={14} />
+                    )}
+                  </Button>
+                </div>
+                <div>
+                  {latestMessage.parts
+                    .filter((part) => part.type === "text")
+                    .map((part, i) => (
+                      <div key={i}>{part.text}</div>
+                    ))}
+                </div>
               </ScrollArea>
             </div>
           </div>

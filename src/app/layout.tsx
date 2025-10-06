@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className={` ${geistMono.variable} antialiased flex h-screen `}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >

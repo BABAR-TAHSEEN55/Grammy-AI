@@ -2,7 +2,6 @@ import React from "react";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -11,22 +10,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "./ui/sidebar";
-import { ChevronUp, History, Search, User } from "lucide-react";
+import { History } from "lucide-react";
 
 import ChatHistorySIdebar from "./ChatHistorySidebar";
 
 import Link from "next/link";
 import { ItemProps } from "@/types";
-import { DropdownMenu, DropdownMenuTrigger } from "./ui/dropdown-menu";
-import CreditsSection from "./CreditsSection";
 
 const Items: ItemProps[] = [
-  // {
-  //   title: "New Chat",
-  //   url: "/",
-  //   Icon: ChartArea,
-  // },
-
   {
     title: "Chat History",
     url: "/",
