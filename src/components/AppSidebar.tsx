@@ -19,7 +19,7 @@ import { ItemProps } from "@/types";
 
 const Items: ItemProps[] = [
   {
-    title: "Chat History",
+    title: "New Chat",
     url: "/",
     Icon: History,
   },

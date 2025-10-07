@@ -30,6 +30,7 @@ const ChatHistorySIdebar = () => {
   const FetchData = async () => {
     await new Promise((resolve) => setTimeout(resolve, 3000));
     const res = await axios.get(`/api/chat`);
+    console.log(res);
     return res.data.chats;
   };
 
@@ -64,7 +65,7 @@ const ChatHistorySIdebar = () => {
               {data?.map((data) => (
                 <SidebarMenuItem key={data.id} className="line-clamp-2">
                   <SidebarMenuButton>
-                    <Link href={`/chats/${data.id}`}>
+                    <Link href={`/Interactions/${data.id}`}>
                       {state == "collapsed" ? (
                         // <p></p>
                         <></>
