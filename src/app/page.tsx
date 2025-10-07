@@ -14,8 +14,9 @@ const Home = () => {
     }, 3000);
     return () => clearInterval(timeout);
   });
+  // Change it to 80 if you like
   return (
-    <main className="grid place-content-center gap-y-2 md:gap-y-8 min-h-[80vh]  relative">
+    <main className="grid place-content-center gap-y-2 md:gap-y-8 min-h-[85vh]  relative">
       <Header />
       {timer ? <MainContent /> : <Loader />}
     </main>
