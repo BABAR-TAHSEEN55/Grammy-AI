@@ -3,7 +3,7 @@
 import * as z from "zod";
 import { useChat } from "@ai-sdk/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCheck, ChevronRight, Copy, Loader2 } from "lucide-react";

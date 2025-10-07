@@ -64,7 +64,7 @@ const ChatHistorySIdebar = () => {
               {data?.map((data) => (
                 <SidebarMenuItem key={data.id} className="line-clamp-2">
                   <SidebarMenuButton>
-                    <Link href={data.id}>
+                    <Link href={`/chats/${data.id}`}>
                       {state == "collapsed" ? (
                         // <p></p>
                         <></>

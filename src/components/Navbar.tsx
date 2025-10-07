@@ -10,6 +10,7 @@ import { Moon, Sun } from "lucide-react";
 
 import Context from "./Context";
 import CreditsSection from "./CreditsSection";
+import Link from "next/link";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
@@ -25,7 +26,9 @@ const Navbar = () => {
     <nav className="flex justify-between items-center p-4 z-50">
       <div className="flex gap-2 justify-center items-center ">
         <SidebarTrigger />
-        <p className="font-mono">Grammy Ai</p>
+        <Link href={"/"} className="font-mono">
+          Grammy Ai
+        </Link>
       </div>
       <div className="flex items-center justify-center  gap-4">
         <DropdownMenu>
