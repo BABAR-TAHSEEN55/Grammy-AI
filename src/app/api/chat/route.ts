@@ -86,9 +86,18 @@ export async function POST(req: Request) {
   };
   const allMessages = [SystemPrompt, ...normalizeMessages(messages)];
 
+  let AiResponse = "";
   const result = streamText({
     model: perplexity("sonar-pro"),
     messages: convertToModelMessages(allMessages),
+    onChunk: async ({ chunk }) => {
+      if (chunk.type === "text-delta") {
+        AiResponse += chunk.text;
+      }
+    },
+    onFinish: async () => {
+      console.log("THis is the New Response ", AiResponse);
+    },
   });
 
   return result.toUIMessageStreamResponse();
@@ -110,6 +119,3 @@ export const GET = async () => {
 
 // 2) Write a message AI Might sometimes Fumble try again to get the response Hallucination is real
 // 4) LOGO Change
-// 5) Message looks kinda shi~
-// 6) Custom & Social Size Decrese
-// 7) System default theme looks kinda ahhhhhhh
