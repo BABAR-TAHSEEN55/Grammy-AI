@@ -65,15 +65,17 @@ export async function POST(req: Request) {
   const UserMessage = (messages[messages.length - 1].parts[0] as MessagePart)
     .text;
 
+  let ChatId: string | null = null;
   if (userId) {
-    await db.chatHistory.create({
+    const chatRecord = await db.chatHistory.create({
       data: {
         Chats: UserMessage,
+        AiResponse: null,
         userId,
       },
     });
+    ChatId = chatRecord.id;
   }
-
   const SystemPrompt: UIMessage = {
     id: "1",
     role: "system",
@@ -96,7 +98,14 @@ export async function POST(req: Request) {
       }
     },
     onFinish: async () => {
-      console.log("THis is the New Response ", AiResponse);
+      if (userId) {
+        await db.chatHistory.update({
+          where: { id: ChatId || "" },
+          data: {
+            AiResponse: AiResponse,
+          },
+        });
+      }
     },
   });
 
