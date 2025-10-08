@@ -43,7 +43,6 @@ const Navbar = () => {
         <Context />
 
         <UserProfile />
-        {/*<CreditsSection />*/}
       </div>
     </nav>
   );

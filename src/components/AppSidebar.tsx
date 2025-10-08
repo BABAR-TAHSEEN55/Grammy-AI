@@ -2,6 +2,7 @@ import React from "react";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -16,6 +17,7 @@ import ChatHistorySIdebar from "./ChatHistorySidebar";
 
 import Link from "next/link";
 import { ItemProps } from "@/types";
+import CreditsSection from "./CreditsSection";
 
 const Items: ItemProps[] = [
   {
