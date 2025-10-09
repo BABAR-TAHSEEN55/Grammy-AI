@@ -1,4 +1,5 @@
 "use client";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Loader from "@/components/Loader";
 
@@ -16,9 +17,12 @@ const Home = () => {
   });
   // Change it to 80 if you like
   return (
-    <main className="grid place-content-center gap-y-2 md:gap-y-8 min-h-[85vh]  relative">
-      <Header />
-      {timer ? <MainContent /> : <Loader />}
+    <main className="flex flex-col justify-between min-h-[85vh] relative">
+      <div className="flex-grow grid place-content-center gap-y-2 md:gap-y-8">
+        <Header />
+        {timer ? <MainContent /> : <Loader />}
+      </div>
+      <Footer />
     </main>
   );
 };

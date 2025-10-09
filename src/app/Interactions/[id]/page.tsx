@@ -14,7 +14,7 @@ const ChatsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
           {Response ? (
             <>
               <div className="flex justify-end">
-                <div className="max-w-xs lg:max-w-md px-4 py-3 rounded-lg border  text-white  border-black/20 dark:border-white/20  ">
+                <div className="max-w-xs lg:max-w-md px-4 py-3 rounded-lg border  dark:text-white text-black  border-black/20 dark:border-white/20  ">
                   <p className="text-sm py-3">{Response.Chats}</p>
                   <span className="text-xs opacity-70 flex justify-between items-center ">
                     {new Date(Response.createdAt).toLocaleTimeString()}
@@ -26,7 +26,7 @@ const ChatsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
 
               {Response.AiResponse && (
                 <div className="flex justify-start">
-                  <div className="max-w-xs lg:max-w-md px-4 py-3 rounded-lg border  text-white  border-black/20 dark:border-white/20  ">
+                  <div className="max-w-xs lg:max-w-md px-4 py-3 rounded-lg border  dark:text-white text-black  border-black/20 dark:border-white/20   shadow-2xl">
                     <p className="text-sm py-3">{Response.AiResponse}</p>
                     <span className="text-xs opacity-70 flex justify-between items-center ">
                       {new Date(Response.createdAt).toLocaleTimeString()}

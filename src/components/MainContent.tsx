@@ -16,6 +16,9 @@ import { FormSchema } from "../../schema";
 
 import { Alert, AlertDescription } from "./ui/alert";
 
+import CustomRedirect from "./CustomRedirect";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+
 const MainContent = () => {
   const [copy, setCopied] = useState<"Copy" | "Copied">("Copy");
   const [tone, setTone] = useState<string>("");
@@ -138,7 +141,7 @@ const MainContent = () => {
               {/*Copy Button*/}
               <div className="py-2" />
               <ScrollArea className="max-h-[200px] w-full rounded-md border border-black/20 dark:border-white/20 p-4 overflow-y-auto">
-                <div className="flex justify-end mb-2">
+                <div className="flex justify-end mb-2 gap-4 ">
                   <Button
                     className="h-8 w-8 p-0 border-neutral-700"
                     variant={"custom"}
@@ -149,11 +152,36 @@ const MainContent = () => {
                     }}
                   >
                     {copy === "Copy" ? (
-                      <Copy size={14} />
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Copy size={14} />
+                        </TooltipTrigger>
+                        <TooltipContent>Copy</TooltipContent>
+                      </Tooltip>
                     ) : (
                       <CheckCheck size={14} />
                     )}
                   </Button>
+
+                  <CustomRedirect
+                    type="Twitter"
+                    RedirectedText={ExtractedText}
+                  />
+                  <CustomRedirect
+                    type="Linkedin"
+                    RedirectedText={ExtractedText}
+                  />
+                  {/*<Button
+                    className="h-8 w-8 p-0 border-neutral-700"
+                    variant={"custom"}
+                    size="sm"
+                  >
+                    <Link
+                      href={`https://x.com/compose/post?text=${ExtractedText}`}
+                    >
+                      <X size={14} />
+                    </Link>
+                  </Button>*/}
                 </div>
                 <div>
                   {latestMessage.parts

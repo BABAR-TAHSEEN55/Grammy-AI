@@ -28,7 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={` ${geistMono.variable} antialiased flex h-screen `}>
+      <body
+        className={` ${geistMono.variable} antialiased flex h-screen `}
+        suppressHydrationWarning
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -45,6 +48,7 @@ export default function RootLayout({
                   <ThemeChanger>
                     <LayoutMain>
                       <Navbar />
+
                       <div className="px-4">{children}</div>
                     </LayoutMain>
                   </ThemeChanger>

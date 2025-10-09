@@ -2,7 +2,6 @@ import React from "react";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -11,19 +10,20 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "./ui/sidebar";
-import { History } from "lucide-react";
+import { BookOpen } from "lucide-react";
 
 import ChatHistorySIdebar from "./ChatHistorySidebar";
 
 import Link from "next/link";
 import { ItemProps } from "@/types";
-import CreditsSection from "./CreditsSection";
+
+import Refresh from "./Refresh";
 
 const Items: ItemProps[] = [
   {
     title: "New Chat",
     url: "/",
-    Icon: History,
+    Icon: BookOpen,
   },
 ];
 const AppSidebar = () => {
@@ -46,7 +46,8 @@ const AppSidebar = () => {
                   <SidebarMenuButton asChild>
                     <Link href={item.url}>
                       <item.Icon />
-                      <span className="">{item.title}</span>
+                      {/*<span>{item.title}</span>*/}
+                      <Refresh title={item.title} />
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

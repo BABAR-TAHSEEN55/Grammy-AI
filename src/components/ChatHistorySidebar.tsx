@@ -60,26 +60,31 @@ const ChatHistorySIdebar = () => {
           </SidebarGroupLabel>
           <CollapsibleContent>
             <SidebarGroupContent>
-              {/*<SidebarMenuItem>asdfasd</SidebarMenuItem>*/}
-
-              {data?.map((data) => (
-                <SidebarMenuItem key={data.id} className="line-clamp-2">
-                  <SidebarMenuButton>
-                    <Link href={`/Interactions/${data.id}`}>
-                      {state == "collapsed" ? (
-                        // <p></p>
-                        <></>
-                      ) : (
-                        <span className="flex flex-col ">
-                          {data.Chats.length > 10
-                            ? data.Chats.slice(0, 20) + "...."
-                            : data.Chats}
-                        </span>
-                      )}
-                    </Link>
-                  </SidebarMenuButton>
+              {!data || data.length === 0 ? (
+                <SidebarMenuItem>
+                  <div className="px-2 py-1 text-sm text-muted-foreground">
+                    No chat history found
+                  </div>
                 </SidebarMenuItem>
-              ))}
+              ) : (
+                data.map((data) => (
+                  <SidebarMenuItem key={data.id} className="line-clamp-2">
+                    <SidebarMenuButton asChild>
+                      <Link href={`/Interactions/${data.id}`}>
+                        {state == "collapsed" ? (
+                          <></>
+                        ) : (
+                          <span className="flex flex-col ">
+                            {data.Chats.length > 10
+                              ? data.Chats.slice(0, 20) + "...."
+                              : data.Chats}
+                          </span>
+                        )}
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))
+              )}
             </SidebarGroupContent>
           </CollapsibleContent>
         </SidebarGroup>
@@ -87,5 +92,4 @@ const ChatHistorySIdebar = () => {
     </SidebarMenu>
   );
 };
-
 export default ChatHistorySIdebar;
