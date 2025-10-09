@@ -9,11 +9,12 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSubButton,
   useSidebar,
 } from "./ui/sidebar";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, History } from "lucide-react";
 import {
   Collapsible,
   CollapsibleContent,
@@ -62,9 +63,12 @@ const ChatHistorySIdebar = () => {
             <SidebarGroupContent>
               {!data || data.length === 0 ? (
                 <SidebarMenuItem>
-                  <div className="px-2 py-1 text-sm text-muted-foreground">
-                    No chat history found
-                  </div>
+                  <SidebarMenuSubButton>
+                    <History />
+                    <div className="px-2 py-1 text-sm text-muted-foreground">
+                      No chats found
+                    </div>
+                  </SidebarMenuSubButton>
                 </SidebarMenuItem>
               ) : (
                 data.map((data) => (
