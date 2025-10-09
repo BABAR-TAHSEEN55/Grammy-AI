@@ -12,7 +12,7 @@ import {
 } from "./ui/dropdown-menu";
 import { useSession } from "next-auth/react";
 import { signIn, signOut } from "next-auth/react";
-import Loader from "./Loader.tsx";
+import Loader from "./Loader";
 import CreditsSection from "./CreditsSection";
 
 const UserProfile = () => {

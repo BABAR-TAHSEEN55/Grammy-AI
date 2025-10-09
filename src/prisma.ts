@@ -5,6 +5,8 @@ type GetChatType = {
 };
 export const GetChatById = async ({ id }: GetChatType) => {
   return await db.chatHistory.findUnique({
-    where: { id },
+    where: {
+      id,
+    },
   });
 };

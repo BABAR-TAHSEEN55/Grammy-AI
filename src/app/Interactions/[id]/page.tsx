@@ -1,18 +1,16 @@
 // import Copy from "@/components/Copy";
 import CopyText from "@/components/CopyText";
+
 import { GetChatById } from "@/prisma";
 
-type ChatResponse = {
-  id: string | "";
-  Chats: string;
-  AiResponse: string | null;
-  createdAt: Date; // ISO string format
-  userId: string;
-};
+// type ResponseType = {
+//   AiResponse: string;
+//   createdAt: Date;
+//   Chats: string;
+// };
 const ChatsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
-  const Response: ChatResponse | null = await GetChatById({ id });
-  console.log("This is the Response : ", Response);
+  const Response = await GetChatById({ id });
 
   return (
     <div className="h-[650px] w-full p-4">
@@ -32,14 +30,14 @@ const ChatsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
                 </div>
               </div>
 
-              {Response.AiResponse && (
+              {Response?.AiResponse && (
                 <div className="flex justify-start">
                   <div className="max-w-xs lg:max-w-md px-4 py-3 rounded-lg border  dark:text-white text-black  border-black/20 dark:border-white/20   shadow-2xl">
-                    <p className="text-sm py-3">{Response.AiResponse}</p>
+                    <p className="text-sm py-3">{Response?.AiResponse}</p>
                     <span className="text-xs opacity-70 flex justify-between items-center ">
                       {new Date(Response.createdAt).toLocaleTimeString()}
                       {/*<Copy />*/}
-                      <CopyText ExtractedText={Response.AiResponse} />
+                      <CopyText ExtractedText={Response?.AiResponse} />
                     </span>
                   </div>
                 </div>

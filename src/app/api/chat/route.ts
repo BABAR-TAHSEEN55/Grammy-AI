@@ -70,7 +70,7 @@ export async function POST(req: Request) {
     const chatRecord = await db.chatHistory.create({
       data: {
         Chats: UserMessage,
-        AiResponse: null,
+        // AiResponse: null,
         userId,
       },
     });
@@ -102,7 +102,7 @@ export async function POST(req: Request) {
         await db.chatHistory.update({
           where: { id: ChatId || "" },
           data: {
-            AiResponse: AiResponse,
+            AiResponse,
           },
         });
       }

@@ -56,9 +56,9 @@ model Session {
 }
 
 model ChatHistory{
-id String @id @default(cuid())
+id String @id @default(cuid()) @unique
 Chats String
-AiResponse String?
+AiResponse String @default("")
 createdAt DateTime @default(now())
 userId String
 user User @relation(fields: [userId],references: [id],onDelete: Cascade)
