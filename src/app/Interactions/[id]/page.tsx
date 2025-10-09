@@ -2,9 +2,17 @@
 import CopyText from "@/components/CopyText";
 import { GetChatById } from "@/prisma";
 
+type ChatResponse = {
+  id: string | "";
+  Chats: string;
+  AiResponse: string | null;
+  createdAt: Date; // ISO string format
+  userId: string;
+};
 const ChatsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
-  const Response = await GetChatById({ id });
+  const Response: ChatResponse | null = await GetChatById({ id });
+  console.log("This is the Response : ", Response);
 
   return (
     <div className="h-[650px] w-full p-4">
