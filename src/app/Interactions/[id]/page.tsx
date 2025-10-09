@@ -3,14 +3,16 @@ import CopyText from "@/components/CopyText";
 
 import { GetChatById } from "@/prisma";
 
-// type ResponseType = {
-//   AiResponse: string;
-//   createdAt: Date;
-//   Chats: string;
-// };
+type ResponseType = {
+  AiResponse?: string;
+
+  Chats: string;
+  id: string;
+  createdAt: Date;
+};
 const ChatsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
-  const Response = await GetChatById({ id });
+  const Response = (await GetChatById({ id })) as ResponseType | null;
 
   return (
     <div className="h-[650px] w-full p-4">
