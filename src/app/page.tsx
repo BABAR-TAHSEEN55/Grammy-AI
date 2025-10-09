@@ -18,7 +18,7 @@ const Home = () => {
     }, 3000);
     notfify();
     return () => clearInterval(timeout);
-  });
+  }, []);
   // Change it to 80 if you like
   return (
     <main className="flex flex-col justify-between min-h-[85vh] relative">
