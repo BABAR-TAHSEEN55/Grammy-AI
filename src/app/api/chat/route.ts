@@ -128,3 +128,4 @@ export const GET = async () => {
 
 // 2) Write a message AI Might sometimes Fumble try again to get the response Hallucination is real
 // 4) LOGO Change
+// 5) Credits Section should go UP
