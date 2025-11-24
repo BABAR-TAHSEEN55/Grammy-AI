@@ -8,7 +8,7 @@ const Footer = () => {
         Copyright © Suho Kim 2025 All rights Reserved
       </p>
       <Link
-        href="https://x.com/Suhokim55"
+        href="https://x.com/"
         target="_blank"
         rel="noopener noreferrer"
         className=" text-gray-500 hover:text-white transition duration-900 ease-in-out tracking-wider"
