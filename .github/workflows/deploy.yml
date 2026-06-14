@@ -27,4 +27,3 @@ jobs:
           push: true
           tags: |
             suhokim55/grammyai:latest
-            suhokim55/grammyai:${{ github.sha }}
