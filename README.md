@@ -55,49 +55,49 @@ Grammy-AI is an intelligent writing assistant that transforms your rough thought
 
 1. **Clone the repository**
 
-    ```bash
-    git clone https://github.com/yourusername/grammy-ai.git
-    cd grammy-ai
-    ```
+   ```bash
+   git clone https://github.com/yourusername/grammy-ai.git
+   cd grammy-ai
+   ```
 
 2. **Install dependencies**
 
-    ```bash
-    bun install
-    # or
-    npm install
-    ```
+   ```bash
+   bun install
+   # or
+   npm install
+   ```
 
 3. **Set up environment variables**
    Create a `.env.local` file:
 
-    ```env
-    DATABASE_URL="postgresql://username:password@localhost:5432/grammyai"
-    PERPLEXITY_API_KEY="your_perplexity_api_key"
-    NEXTAUTH_SECRET="your-secret-key"
-    NEXTAUTH_URL="http://localhost:3000"
+   ```env
+   DATABASE_URL="postgresql://username:password@localhost:5432/grammyai"
+   PERPLEXITY_API_KEY="your_perplexity_api_key"
+   NEXTAUTH_SECRET="your-secret-key"
+   NEXTAUTH_URL="http://localhost:3000"
 
-    # Optional: OAuth providers
-    GOOGLE_CLIENT_ID="your_google_client_id"
-    GOOGLE_CLIENT_SECRET="your_google_client_secret"
-    GITHUB_ID="your_github_id"
-    GITHUB_SECRET="your_github_secret"
-    ```
+   # Optional: OAuth providers
+   GOOGLE_CLIENT_ID="your_google_client_id"
+   GOOGLE_CLIENT_SECRET="your_google_client_secret"
+   GITHUB_ID="your_github_id"
+   GITHUB_SECRET="your_github_secret"
+   ```
 
 4. **Set up the database**
 
-    ```bash
-    bun run prisma:generate
-    npx prisma migrate deploy
-    ```
+   ```bash
+   bun run prisma:generate
+   npx prisma migrate deploy
+   ```
 
 5. **Start the development server**
 
-    ```bash
-    bun dev
-    # or
-    npm run dev
-    ```
+   ```bash
+   bun dev
+   # or
+   npm run dev
+   ```
 
 6. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
@@ -169,6 +169,7 @@ Contributions are welcome! Feel free to:
 - Report bugs or request features
 - Submit pull requests
 - Improve documentation
+- Share feedback from your usage
 - Share feedback from your usage
 
 ## License
